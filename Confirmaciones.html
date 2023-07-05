@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Confirmación de Reserva</title>
+  <style>
+    .section {
+      margin-bottom: 20px;
+    }
+    
+    .section-title {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+  <script>
+    function actualizarTexto() {
+      var parametroNombre = document.getElementById('parametroNombre').value;
+      var numeroDeReserva = document.getElementById('numeroDeReserva').value;
+      var parametroCheckIn = document.getElementById('parametroCHECK-IN').value;
+      var parametroCheckOut = document.getElementById('parametroCHECK-OUT').value;
+      var parametroTipoHab = document.getElementById('parametroTipoHab').value;
+      var parametroCantHabitaciones = document.getElementById('parametroCantHabitaciones').value;
+      var parametroCantNoches = document.getElementById('parametroCantNoches').value;
+      var parametroPrecioTotal = document.getElementById('parametroPrecioTotal').value;
+      
+      document.getElementById('texto').innerHTML = `
+        Sr(a) ${parametroNombre}<br><br>
+        Confirmamos su reserva en Hotel Ribera Sur<br><br>
+        Confirmación: ${numeroDeReserva}<br>
+        Fecha de Llegada: ${parametroCheckIn}<br>
+        Hora de Llegada: 14:00<br>
+        Fecha de Partida: ${parametroCheckOut}<br>
+        Hora de Partida: 10:00<br>
+        Tipo de Habitación: ${parametroTipoHab}<br>
+        Cant. Habitaciones: ${parametroCantHabitaciones}<br>
+        # de noches: ${parametroCantNoches}<br><br>
+        Adultos: 2<br>
+        Niños: 0<br><br>
+        Comidas: Con desayuno<br><br>
+        Precio Total: ARS ${parametroPrecioTotal}<br><br>
+        Le envío adjunta la confirmación de reserva con las políticas del hotel<br><br>
+        Los Pedidos de Habitación son tenidos en cuenta pero no son garantizados. El Hotel puede hacer cambios si éstos fueran necesarios para optimizar la ocupación.<br><br>
+        Política del hotel para reservas<br><br>
+        Agradecemos haber considerado a Ribera Sur Hotel para su estadía. Detallamos a continuación información que deberá ser leída por el huésped antes de ingresar al Hotel.<br><br>
+        LA TARIFA INCLUYE<br>
+        Desayuno, Wi-fi en todo el hotel, IVA.<br><br>
+        HORARIOS<br>
+        Hora de Arribo al Hotel: 14:00 Hs.<br>
+        Hora de Partida del Hotel: 10:00 Hs.<br><br>
+        En caso de arribar antes del horario de Check In, se deberá abonar un adicional del 50 % de la tarifa (de 06 a 11 Hs) en concepto de Early Check In o el 100 % (antes de las 06) sobre la tarifa.<br>
+        En caso de dejar la habitación pasadas las 10:00, se deberá abonar un adicional de 50 % de la tarifa en concepto de Late Check Out. Pasadas las 18 hs 100 % adicional a la tarifa.<br>
+        Tanto el Early Check In como el Late Check Out, deberán ser consultados en Recepción y estarán sujetos a la disponibilidad.<br><br>
+        CANTIDAD MAXIMA DE HUESPEDES POR HABITACION<br>
+        2 o 3 (en caso de necesitar cama extra)<br><br>
+        CANCELACION DE RESERVA<br>
+        Notificar la cancelación 7 días antes del arribo, NO tendrá costos de cancelación, de lo contrario se tomará como penalidad una (1) noche de alojamiento que será debitada de su tarjeta de crédito. En las promociones No Reembolsable, se cobrará el total del alojamiento. Cancelación por covid, en caso de contraer covid en su estadía y deba retirarse antes de la fecha del check out se cobrara el total de la estadía.<br><br>
+        LARGAS ESTADIAS<br>
+        El corte de facturación y la cobranza para reservas de larga estadía, se realizará semanalmente.<br><br>
+        CAJAS DE SEGURIDAD<br>
+        Las habitaciones del hotel cuentan con cajas de seguridad, por favor mantenga objetos de valor y dinero dentro de la misma. El Hotel no se hará responsable por la ausencia de los mismos.<br><br>
+        HOTEL NO FUMADOR<br>
+        Se aplicará una penalidad de USD100 por fumar dentro las habitaciones y en las áreas internas del Hotel.<br><br>
+        PARKING<br>
+        El hotel cuenta con parking de cortesía, el mismo está sujeto a disponibilidad y se asigna por orden de llegada. El Hotel no se responsabiliza por eventuales daños, hurtos, robos y perjuicios ocasionados en su vehículo o cualquier artículo dentro del mismo.<br><br>
+        Los esperamos!<br>
+        Saludos
+      `;
+    }
+    
+    function copiarTexto() {
+      var texto = document.getElementById('texto').innerText;
+      navigator.clipboard.writeText(texto).then(function() {
+        alert('¡El texto se ha copiado al portapapeles!');
+      }, function() {
+        alert('Error al copiar el texto.');
+      });
+    }
+  </script>
+</head>
+<body>
+ <div class="section">
+    <h2 class="section-title">Ingrese los datos de su confirmación</h2>
+  <label for="parametroNombre">Nombre:</label>
+  <input type="text" id="parametroNombre" oninput="actualizarTexto()">
+
+  <label for="numeroDeReserva">Número de Reserva:</label>
+  <input type="text" id="numeroDeReserva" oninput="actualizarTexto()">
+
+  <label for="parametroCHECK-IN">Fecha de Llegada:</label>
+  <input type="date" id="parametroCHECK-IN" oninput="actualizarTexto()">
+
+  <label for="parametroCHECK-OUT">Fecha de Partida:</label>
+  <input type="date" id="parametroCHECK-OUT" oninput="actualizarTexto()">
+
+  <label for="parametroTipoHab">Tipo de Habitación:</label>
+  <select id="parametroTipoHab" onchange="actualizarTexto()">
+    <option value="ESTANDAR">ESTANDAR</option>
+    <option value="SUPERIOR">SUPERIOR</option>
+    <option value="TRIPLE">TRIPLE</option>
+  </select>
+
+  <label for="parametroCantHabitaciones">Cant. Habitaciones:</label>
+  <input type="text" id="parametroCantHabitaciones" oninput="actualizarTexto()">
+
+  <label for="parametroCantNoches"># de noches:</label>
+  <input type="text" id="parametroCantNoches" oninput="actualizarTexto()">
+
+  <label for="parametroPrecioTotal">Precio Total:</label>
+  <input type="text" id="parametroPrecioTotal" oninput="actualizarTexto()">
+
+  <br><br>
+
+  <p id="texto"></p>
+
+  <button onclick="copiarTexto()">Copiar Texto</button>
+</body>
+</html>
